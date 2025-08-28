@@ -39,9 +39,22 @@ const getRandomJoke = async (req, res) => {
     });
 };
 
+const deleteJoke = async (req, res) => {
+    const isDeleted = await Joke.destroy({where: {id:req.params.id}});
+    if (!isDeleted) throw new Error ("Task not found");
+    res
+        .status(200).json({
+            error: false,
+            message: `Joke with id ${req.params.id} has been deleted`,
+            result: Boolean(isDeleted)
+        })
+        .send("deleted");
+};
+
 export default {
     postJoke,
     listJokes,
     getJokeById,
-    getRandomJoke
+    getRandomJoke,
+    deleteJoke
 };

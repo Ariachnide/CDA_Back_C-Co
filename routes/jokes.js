@@ -16,4 +16,8 @@ router
     .route("/random")
     .get(jokes.getRandomJoke);
 
+router
+    .route("/delete/:id")
+    .get(jokes.deleteJoke);
+
 export default router;
