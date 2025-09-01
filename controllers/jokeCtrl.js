@@ -1,4 +1,5 @@
 import Joke from "../models/jokes.js";
+import { sequelize } from "../db.js";
 
 const postJoke = async(req, res) => {
     const newJoke = await Joke.create({
@@ -39,7 +40,7 @@ const getJokeById = async (req, res) => {
 };
 
 const getRandomJoke = async (req, res) => {
-    const joke = await Joke.findAll({order: sequelize.random()});
+    const joke = await Joke.findOne({order: sequelize.random()});
     res.status(200).json({
         error: false,
         message: "A joke has been randomly fetched",

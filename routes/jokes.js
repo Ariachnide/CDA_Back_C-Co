@@ -49,6 +49,24 @@ router
 
 /**
  * @swagger
+ * /blagues/random:
+ *   get:
+ *     summary: Get a random joke.
+ *     description: Get one joke chosen randomly amongst all existing jokes.
+ *     responses:
+ *       "200":
+ *         description: A successful response
+ *       "500":
+ *         description: Internal server error
+ */
+
+router
+    .route("/blagues/random")
+    .get(jokes.getRandomJoke);
+
+
+/**
+ * @swagger
  * /blagues/{id}:
  *   get:
  *     summary: Get joke by ID.
@@ -72,24 +90,6 @@ router
 router
     .route("/blagues/:id")
     .get(jokes.getJokeById);
-
-/**
- * @swagger
- * /blagues/random:
- *   get:
- *     summary: Get a random joke.
- *     description: Get one joke chosen randomly amongst all existing jokes.
- *     responses:
- *       "200":
- *         description: A successful response
- *       "500":
- *         description: Internal server error
- */
-
-router
-    .route("/blagues/random")
-    .get(jokes.getRandomJoke);
-
 /**
  * @swagger
  * /blagues/delete/{id}:
