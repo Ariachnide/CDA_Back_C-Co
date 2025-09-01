@@ -23,11 +23,19 @@ const listJokes = async(req, res) => {
 
 const getJokeById = async (req, res) => {
     const joke = await Joke.findByPk(req.params.id);
-    res.status(200).json({
-        error: false,
-        message: `Joke with id ${req.params.id} has been fetched`,
-        result: joke
-    });
+    if (joke === null) {
+        res.status(404).json({
+            error: true,
+            message: `Joke with id ${req.params.id} cannot be found`,
+            result: joke
+        });
+    } else {
+        res.status(200).json({
+            error: false,
+            message: `Joke with id ${req.params.id} has been fetched`,
+            result: joke
+        });
+    }
 };
 
 const getRandomJoke = async (req, res) => {
