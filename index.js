@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import express from "express";
 import { connectDB } from "./db.js";
 import jokeRouter from "./routes/jokes.js";
@@ -5,9 +6,9 @@ import cors from "cors";
 import swaggerjsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import swaggerOptions from "./swaggerConfig.js";
+dotenv.config({ path: "./.env" });
 
 const app = express();
-const PORT = 8080;
 
 connectDB();
 
@@ -24,6 +25,6 @@ app.get("/", (req, res) => {
 
 app.use("/", jokeRouter);
 
-app.listen(PORT, () => {
-  console.log(`Example app listening at http://localhost:${PORT}`);
+app.listen(process.env.API_PORT, () => {
+  console.log(`Example app listening at ${process.env.API_BASE_URL}:${process.env.API_PORT}`);
 });

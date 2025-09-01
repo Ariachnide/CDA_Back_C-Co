@@ -7,7 +7,7 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: "http://localhost:8080/"
+                url: `${process.env.API_BASE_URL}:${process.env.API_PORT}`
             }
         ],
     },
